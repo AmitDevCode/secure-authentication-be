@@ -17,12 +17,10 @@ RUN addgroup -g 1001 -S appuser && \
     adduser -u 1001 -S appuser -G appuser
 WORKDIR /app
 
-RUN mkdir -p /app/frames && chown -R appuser:appuser /app/frames
-
 COPY --from=builder --chown=appuser:appuser /app/build/libs/*.jar app.jar
 USER appuser
 
-EXPOSE 9000
+EXPOSE 8085
 
 ENV JAVA_OPTS="-XX:+UseG1GC \
     -XX:MaxGCPauseMillis=200 \

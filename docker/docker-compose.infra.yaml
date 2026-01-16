@@ -9,7 +9,7 @@ services:
     volumes:
       - authentication_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U oen_db_user -d oen_management_db" ]
+      test: [ "CMD-SHELL", "pg_isready -U admin@example.com -d secure_authentication" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -37,11 +37,11 @@ services:
 
 volumes:
   authentication_postgres_data:
-    external: true
+    driver: local
   authentication_pgadmin_data:
-    external: true
+    driver: local
 
 
 networks:
   authentication-network:
-    external: true
+    driver: bridge
