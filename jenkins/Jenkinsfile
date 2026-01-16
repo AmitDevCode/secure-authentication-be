@@ -64,7 +64,7 @@ pipeline {
                             echo "✅ Postgres is already healthy — skipping infra startup."
                         else
                             echo "🚀 Starting infrastructure..."
-                            docker compose -p ${IMAGE_NAME} -f ${INFRA_COMPOSE_FILE} up -d
+                            docker compose -p ${DOCKER_IMAGE} -f ${INFRA_COMPOSE_FILE} up -d
 
                             echo "⏳ Waiting for Postgres to be healthy..."
                             timeout 60s bash -c '
