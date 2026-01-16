@@ -30,7 +30,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - authentication_postgres_data:/var/lib/pgadmin
+      - authentication_pgadmin_data:/var/lib/pgadmin
     restart: unless-stopped
     networks:
       - authentication-network
