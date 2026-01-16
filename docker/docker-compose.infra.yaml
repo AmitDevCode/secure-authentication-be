@@ -46,5 +46,4 @@ volumes:
 
 networks:
   authentication-network:
-    name: authentication-network
     driver: bridge
