@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: authentication-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - authentication_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U oen_db_user -d oen_management_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - authentication-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: authentication-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - authentication_postgres_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - authentication-network
+
+volumes:
+  authentication_postgres_data:
+    external: true
+  authentication_pgadmin_data:
+    external: true
+
+
+networks:
+  authentication-network:
+    external: true
