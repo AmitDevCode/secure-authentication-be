@@ -37,11 +37,14 @@ services:
 
 volumes:
   authentication_postgres_data:
+    name: authentication_postgres_data
     driver: local
   authentication_pgadmin_data:
+    name: authentication_pgadmin_data
     driver: local
 
 
 networks:
   authentication-network:
+    name: authentication-network
     driver: bridge
