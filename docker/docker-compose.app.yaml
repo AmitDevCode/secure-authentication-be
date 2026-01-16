@@ -11,7 +11,7 @@ services:
       AUTHENTICATION_SERVER_ENV: ${AUTHENTICATION_SERVER_ENV}
     restart: unless-stopped
     networks:
-      - authentication-network
+      - secure-authentication-be_authentication-network
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -20,5 +20,5 @@ services:
       start_period: 60s
 
 networks:
-  authentication-network:
+  secure-authentication-be_authentication-network:
     external: true

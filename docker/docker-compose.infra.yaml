@@ -33,7 +33,7 @@ services:
       - authentication_pgadmin_data:/var/lib/pgadmin
     restart: unless-stopped
     networks:
-      - authentication-network
+      - secure-authentication-be_authentication-network
 
 volumes:
   authentication_postgres_data:
@@ -45,6 +45,5 @@ volumes:
 
 
 networks:
-  authentication-network:
-    name: authentication-network
+  secure-authentication-be_authentication-network:
     driver: bridge
