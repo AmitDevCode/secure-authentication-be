@@ -15,7 +15,7 @@ services:
       retries: 5
     restart: unless-stopped
     networks:
-      - secure-authentication-be_authentication-network
+      - authentication-network
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -33,7 +33,7 @@ services:
       - authentication_pgadmin_data:/var/lib/pgadmin
     restart: unless-stopped
     networks:
-      - secure-authentication-be_authentication-network
+      - authentication-network
 
 volumes:
   authentication_postgres_data:
@@ -45,5 +45,6 @@ volumes:
 
 
 networks:
-  secure-authentication-be_authentication-network:
-    driver: bridge
+  authentication-network:
+    external: true
+
