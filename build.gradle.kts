@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.sonarqube") version "3.5.0.2730"
 }
 
 group = "com.amit.security"
@@ -44,4 +45,14 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "secure-authentication-be")
+        property("sonar.name", "secure-authentication-be")
+        property("sonar.host.url", "http://192.168.1.128:9000/sonarqube")
+        property("sonar.sources", "src/main/java")
+        property("sonar.sources", "src/test/java")
+    }
 }
