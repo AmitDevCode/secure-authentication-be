@@ -38,6 +38,8 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
     implementation("dev.samstevens.totp:totp:1.7.1")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
+
+    runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
