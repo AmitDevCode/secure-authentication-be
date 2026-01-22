@@ -35,10 +35,6 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-//             environment {
-//                 SONAR_TOKEN = credentials('sonar')
-//                 GRADLE_OPTS = '-Dorg.gradle.jvmargs="--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED"'
-//             }
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh 'chmod +x ./gradlew'

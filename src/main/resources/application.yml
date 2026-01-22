@@ -3,8 +3,8 @@ spring:
     name: Secure Authentication Gateway
   datasource:
     url: jdbc:postgresql://localhost:5432/secure_authentication
-    username: postgres
-    password: root1234
+    username: admin@example.com
+    password: admin1234
     driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: false
