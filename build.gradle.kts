@@ -3,6 +3,7 @@ plugins {
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube") version "3.5.0.2730"
+    id("jacoco")
 }
 
 group = "com.amit.security"
@@ -47,6 +48,44 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.test {
+    finalizedBy("jacocoTestReport")
+
+    jvmArgs = listOf(
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.util=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=java.base/java.text=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
+    )
+}
+
+tasks.jacocoTestReport {
+    dependsOn("test")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(true)
+    }
+}
+
+
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            limit {
+                minimum = BigDecimal(0.89)
+            }
+        }
+    }
+}
+
+tasks.getByName("check") {
+    dependsOn("jacocoTestCoverageVerification")
 }
 
 sonar {
