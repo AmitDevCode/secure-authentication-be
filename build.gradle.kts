@@ -51,6 +51,7 @@ sonar {
     properties {
         property("sonar.projectKey", "secure-authentication-be")
         property("sonar.name", "secure-authentication-be")
+        property("sonar.token", "sqp_3c04f0e8b7a5c3e4cbfdd2ca3e137552b8e9c74d")
         property("sonar.host.url", "http://192.168.1.128:9000/sonarqube")
         property("sonar.sources", "src/main/java")
         property("sonar.sources", "src/test/java")
