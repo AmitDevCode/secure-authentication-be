@@ -38,10 +38,19 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh 'chmod +x ./gradlew'
-                    sh './gradlew clean sonarqube --stacktrace'
+                    sh './gradlew clean build sonar --stacktrace'
                 }
             }
         }
+
+//         stage('SonarQube Analysis') {
+//             steps {
+//                 withSonarQubeEnv('SonarQube') {
+//                     sh 'chmod +x ./gradlew'
+//                     sh './gradlew clean sonarqube --stacktrace'
+//                 }
+//             }
+//         }
 
 
         stage('Prepare Environment') {
