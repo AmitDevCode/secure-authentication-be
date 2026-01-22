@@ -2,7 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.sonarqube") version "3.5.0.2730"
+    id("org.sonarqube") version "5.0.0.4638"
     id("jacoco")
 }
 
@@ -95,6 +95,6 @@ sonar {
         property("sonar.token", "sqp_3c04f0e8b7a5c3e4cbfdd2ca3e137552b8e9c74d")
         property("sonar.host.url", "http://192.168.1.128:9000/sonarqube")
         property("sonar.sources", "src/main/java")
-        property("sonar.sources", "src/test/java")
+        property("sonar.tests", "src/test/java")
     }
 }
